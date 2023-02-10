@@ -1,23 +1,92 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useRef, useState } from "react";
+import Modal from "./components/Modal";
+import MyInput from "./components/MyInput";
+
+// const Person = React.memo(({ name, age }) => {
+//   console.log("Person render");
+//   return (
+//     <div>
+//       {name} / {age}
+//     </div>
+//   );
+// });
+
+// function App() {
+//   const [state, setState] = React.useState({
+//     text: "",
+//     persons: [
+//       { id: 0, name: "Mark", age: 38 },
+//       { id: 1, name: "Hanna", age: 28 },
+//     ],
+//   });
+
+//   const toPersonClick = React.useCallback(() => {}, []);
+
+//   const { text, persons } = state;
+
+//   return (
+//     <div>
+//       <input type="text" value={text} onChange={change} />
+//       <ul>
+//         {persons.map((person) => {
+//           return <Person {...person} key={person.id} onClick={toPersonClick} />;
+//         })}
+//       </ul>
+//     </div>
+//   );
+
+//   function change(e) {
+//     setState({
+//       ...state,
+//       text: e.target.value,
+//     });
+//   }
+// }
+
+// function App() {
+//   const [visible, setVisible] = useState(false);
+
+//   const open = () => {
+//     setVisible(true);
+//   };
+
+//   const close = () => {
+//     setVisible(false);
+//   };
+
+//   return (
+//     <div>
+//       <button onClick={open}>open</button>
+//       {visible && (
+//         <Modal>
+//           <div
+//             style={{
+//               width: "100vw",
+//               height: "100vh",
+//               background: "rgba(0, 0, 0, 0.5)",
+//             }}
+//             onClick={close}
+//           >
+//             Hello
+//           </div>
+//         </Modal>
+//       )}
+//     </div>
+//   );
+// }
 
 function App() {
+  const myInputRef = useRef();
+
+  const click = () => {
+    console.log(myInputRef.current.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MyInput ref={myInputRef} />
+      <button onClick={click}>Send</button>
     </div>
   );
 }
